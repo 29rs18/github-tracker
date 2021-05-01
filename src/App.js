@@ -8,10 +8,12 @@ import Users from './components/users/Users';
 import axios from 'axios';
 import Search from './components/users/Search'
 import Alert  from './components/layout/Alert';
-import About  from './components/pages/About'
+import About  from './components/pages/About';
+//import User from './components/users/User';
 class App extends Component {
   state={
     users:[],
+    //user:{},
     loading:false,
     alert:null,
   }
@@ -27,6 +29,13 @@ class App extends Component {
     const res=await axios.get(`https://api.github.com/search/users?q=${text}`);
     this.setState({users:res.data.items,loading:false});
   }
+  //to get single user
+  // getUser= async(username)=>{
+  //   this.setState({loading:true});
+  //   const res=await axios.get(`https://api.github.com/search/users/${username}`);
+  //   this.setState({user:res.data,loading:false});
+  // }
+
   //clear users from state
   clearUsers=()=>{
     this.setState({users:[],loading:false});
@@ -52,6 +61,7 @@ class App extends Component {
 
           )}/>
           <Route exact path='/about' component={About}></Route>
+          
               </Switch>
       
         </div>
